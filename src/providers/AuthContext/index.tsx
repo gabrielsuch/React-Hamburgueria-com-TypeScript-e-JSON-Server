@@ -5,8 +5,6 @@ import {toast} from "react-toastify"
 
 import {useHistory} from "react-router-dom"
 
-import {useProducts} from "../Products/index"
-
 interface AuthProviderProps {
     children: ReactNode
 }
@@ -66,7 +64,6 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
             email: data.email,
             password: data.password,
             name: data.name,
-            cart: []
         }
 
         api.post("/signup/", newData)
@@ -100,6 +97,7 @@ export const AuthProvider = ({children}: AuthProviderProps) => {
 
     const logout = () => {
         localStorage.clear()
+        setData({} as AuthState)
         history.push("/login")
     }
 

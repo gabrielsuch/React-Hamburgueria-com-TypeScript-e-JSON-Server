@@ -1,46 +1,159 @@
-# Getting Started with Create React App
+														CRIAÇÃO DE UMA CONTA:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+PARA CRIAR UMA CONTA, O USUÁRIO DEVE ESTAR NA ROTA /signup, e usar os seguintes comandos: 
+	{
+		"email": "bla@hotmail.com",
+		"password": "123456",
+		"name": "Bla"
+	}
 
-In the project directory, you can run:
+CASO DER CERTO, RETORNARÁ O STATUS 201 CREATED, COM O SEGUINTE RETORNO: 
+	{
+		"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsYUBob3RtYWlsLmNvbSIsImlhdCI6MTY0Mjk4ODMwMSwiZXhwIjoxNjQyOTkxOTAxLCJzdWIiOiIxMCJ9.NF3L1Z6AyqgoE-oYpVxtloybkQsCeJSBy8UH0eyuu04",
+		"user": {
+			"email": "bla@hotmail.com",
+			"name": "Bla",
+			"id": 10
+		}
+	}
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+CASO O EMAIL JA EXISTA, RETORNARÁ O STATUS 400 BAD REQUEST, COM O SEGUINTE RETORNO: "Email already exists"
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+												   		FAZENDO LOGIN
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `yarn build`
+PARA FAZER LOGIN, O USUÁRIO DEVE ESTAR NA ROTA /login, e usar os seguintes comandos:
+	{
+		"email": "bla@hotmail.com",
+		"password": "123456"
+	}
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+CASO DER CERTO, RETORNARÁ O STATUS 200 OK, COM O SEGUINTE RETORNO:
+	{
+		"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsYUBob3RtYWlsLmNvbSIsImlhdCI6MTY0Mjk4ODM0MiwiZXhwIjoxNjQyOTkxOTQyLCJzdWIiOiIxMCJ9.7z0orZhp_deStr9wJ7GFAq3pOs-JDHyj_aZamqtZQF4",
+		"user": {
+			"email": "bla@hotmail.com",
+			"name": "Bla",
+			"id": 10
+		}
+	}
+	
+CASO O EMAIL NÃO EXISTIR, RETORNARÁ O STATUS 400 BAD REQUEST, COM O SEGUINTE RETORNO: "Cannot find user" ou "Email format is invalid"
+CASO A SENHA ESTIVER INCORRETA, RETORNARÁ O STATUS 400 BAD REQUEST, COM O SEGUINTE RETORNO: "Incorrect password"
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+										 					PRODUTOS
+												  
+  
+PARA MOSTRAR OS PRODUTOS, NECESSITA ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E ENTÃO ESTAR NA ROTA /products, CASO DER CERTO, O STATUS SERÁ (200 OK), COM O SEGUINTE RETORNO:
+	[
+		{
+			"productId": 1,
+			"name": "Hamburguer",
+			"category": "Sanduíches",
+			"price": 14,
+			"img_url": "https://i.ibb.co/fpVHnZL/hamburguer.png",
+			"amount": 1
+		},
+		{
+			"productId": 2,
+			"name": "X-Burguer",
+			"category": "Sanduíches",
+			"price": 16,
+			"img_url": "https://i.ibb.co/djbw6LV/x-burgue.png",
+			"amount": 1
+		},
+		{
+			"productId": 3,
+			"name": "Big Kenzie",
+			"category": "Sanduíches",
+			"price": 18,
+			"img_url": "https://i.ibb.co/FYBKCwn/big-kenzie.png",
+			"amount": 1
+		},
+		{
+			"productId": 4,
+			"name": "Fanta Guaraná",
+			"category": "Bebidas",
+			"price": 5,
+			"img_url": "https://i.ibb.co/cCjqmPM/fanta-guarana.png",
+			"amount": 1
+		},
+		{
+			"productId": 5,
+			"name": "Coca",
+			"category": "Bebidas",
+			"price": 4.99,
+			"img_url": "https://i.ibb.co/fxCGP7k/coca-cola.png",
+			"amount": 1
+		},
+		{
+			"productId": 6,
+			"name": "McShake Ovomaltine",
+			"category": "Bebidas",
+			"price": 4.99,
+			"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+			"amount": 1
+		}
+	]
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+															CARRINHO
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+PARA ADICIONAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E ENTÃO ESTAR NA ROTA /cart?userId=10, CASO DER CERTO, O STATUS SERÁ (201 CREATED) 
+	{
+		"id": 54,
+		"name": "McShake Ovomaltine",
+		"category": "Bebidas",
+		"price": 4.99,
+		"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+		"userId": 10,
+		"amount": 1
+	}
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+E O RETORNO SERÁ: 
+	{
+		"id": 54,
+		"name": "McShake Ovomaltine",
+		"category": "Bebidas",
+		"price": 4.99,
+		"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+		"userId": 10,
+		"amount": 1
+	}
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+PARA PEGAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E ENTÃO ESTAR NA ROTA /cart?userId=10, CASO DER CERTO, O STATUS SERÁ (200 OK), E TERÁ O SEGUINTE RETORNO:
+	[
+		{
+			"id": 54,
+			"name": "McShake Ovomaltine",
+			"category": "Bebidas",
+			"price": 4.99,
+			"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+			"userId": 10,
+			"amount": 1
+		}
+	]
 
-## Learn More
+CASO DER ERRADO, É PORQUE NÃO ESTÁ PASSANDO A AUTENTICAÇÃO BEARER OU NÃO POSSUI NENHUM PRODUTO NO CARRINHO
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+PARA DELETAR UM PRODUTO DO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E DEVE PASSAR COMO QUERY PARAMS, O ID DO PRODUTO, E ENTÃO ESTAR NA ROTA /cart/54, CASO DER CERTO, O STATUS SERÁ (200 OK)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+CASO DER ERRADO É PORQUE O ID DO PRODUTO NÃO PERTENCE A ESTE USUÁRIO, E RETORNARÁ O ERRO (401 UNAUTHORIZED), COM A SEGUINTE MENSAGEM: "Cannot read property 'userId' of undefined"
+
+
+PARA ATUALIZAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E DEVE PASSAR COMO QUERY PARAMS, O ID DO PRODUTO, E ENTÃO ESTAR NA ROTA /cart/54, CASO DER CERTO, O STATUS SERÁ (200 OK)
+	{
+		"id": 55,
+		"name": "McShake Ovomaltine",
+		"category": "Bebidas",
+		"price": 4.99,
+		"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+		"userId": 10,
+		"amount": 5
+	}
+
+CASO O ID ESTEJA DIFERENTE, RETORNARÁ O STATUS (401 UNAUTHORIZED), E RETORNARÁ A SEGUINTE MENSAGEM: "Cannot read property 'userId' of undefined"
