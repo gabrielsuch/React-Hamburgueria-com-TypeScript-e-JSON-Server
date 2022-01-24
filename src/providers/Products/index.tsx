@@ -171,7 +171,6 @@ export const ProductsProvider = ({children}: ProviderProps) => {
     const sumAmount = (product: ProductInfo) => {
         product.amount = product.amount + 1
         const newAmount = {...product}
-        console.log(newAmount)
 
         api.patch(`/cart/${product.id}`, newAmount, {
             headers: {
