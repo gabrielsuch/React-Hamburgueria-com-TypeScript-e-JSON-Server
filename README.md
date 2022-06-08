@@ -1,123 +1,175 @@
-LINK DA API: https://hamburgueriajsonserver.herokuapp.com/		
-                
-                                                        CADASTRO
+### LINK DA API: https://hamburgueriajsonserver.herokuapp.com/		
+# 
+<h1 style="text-align: center;">Cadastro</h1>
 
+## POST /signup - Formato da Requisição
 
-PARA CRIAR UMA CONTA, O USUÁRIO DEVE ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/signup, e usar os seguintes comandos:
-> 
-	{
+```json
+{
+	"email": "bla@hotmail.com",
+	"password": "123456",
+	"name": "Bla"
+}
+```
+
+### Status 201 - Created:
+
+```json
+{
+	"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsYUBob3RtYWlsLmNvbSIsImlhdCI6MTY0Mjk4ODMwMSwiZXhwIjoxNjQyOTkxOTAxLCJzdWIiOiIxMCJ9.NF3L1Z6AyqgoE-oYpVxtloybkQsCeJSBy8UH0eyuu04",
+	"user": {
 		"email": "bla@hotmail.com",
-		"password": "123456",
-		"name": "Bla"
+		"name": "Bla",
+		"id": 10
 	}
+}
+```
 
-CASO DER CERTO, RETORNARÁ O STATUS 201 CREATED, COM O SEGUINTE RETORNO: 
->
-	{
-		"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsYUBob3RtYWlsLmNvbSIsImlhdCI6MTY0Mjk4ODMwMSwiZXhwIjoxNjQyOTkxOTAxLCJzdWIiOiIxMCJ9.NF3L1Z6AyqgoE-oYpVxtloybkQsCeJSBy8UH0eyuu04",
-		"user": {
-			"email": "bla@hotmail.com",
-			"name": "Bla",
-			"id": 10
-		}
-	}
+### Status 400 - Bad Request:
 
+```json
+"Email already exists"
+```
 
-CASO O EMAIL JA EXISTA, RETORNARÁ O STATUS 400 BAD REQUEST, COM O SEGUINTE RETORNO: 
-> "Email already exists"
+# 
+<h1 style="text-align: center;">Login</h1>
 
 
-							LOGIN
+## POST /login - Formato da Requisição
 
+```json
+{
+	"email": "bla@hotmail.com",
+	"password": "123456"
+}
+```
 
-PARA FAZER LOGIN, O USUÁRIO DEVE ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/login, e usar os seguintes comandos:
->
-	{
+### Status 200 - OK:
+
+```json
+{
+	"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsYUBob3RtYWlsLmNvbSIsImlhdCI6MTY0Mjk4ODM0MiwiZXhwIjoxNjQyOTkxOTQyLCJzdWIiOiIxMCJ9.7z0orZhp_deStr9wJ7GFAq3pOs-JDHyj_aZamqtZQF4",
+	"user": {
 		"email": "bla@hotmail.com",
-		"password": "123456"
+		"name": "Bla",
+		"id": 10
 	}
+}
+```
 
-CASO DER CERTO, RETORNARÁ O STATUS 200 OK, COM O SEGUINTE RETORNO:
->
+### Status 400 - Bad Request:
+
+```json
+"Incorrect password" or "Cannot find user" or "Email format is invalid"
+```
+
+
+# 
+<h1 style="text-align: center;">Produtos</h1>
+
+## GET /products - Formato da Requisição - Com Autenticação Bearer
+
+<br>
+
+### Status 200 - OK:
+
+```json
+[
 	{
-		"accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJsYUBob3RtYWlsLmNvbSIsImlhdCI6MTY0Mjk4ODM0MiwiZXhwIjoxNjQyOTkxOTQyLCJzdWIiOiIxMCJ9.7z0orZhp_deStr9wJ7GFAq3pOs-JDHyj_aZamqtZQF4",
-		"user": {
-			"email": "bla@hotmail.com",
-			"name": "Bla",
-			"id": 10
-		}
+		"productId": 1,
+		"name": "Hamburguer",
+		"category": "Sanduíches",
+		"price": 14,
+		"img_url": "https://i.ibb.co/fpVHnZL/hamburguer.png",
+		"amount": 1
+	},
+	{
+		"productId": 2,
+		"name": "X-Burguer",
+		"category": "Sanduíches",
+		"price": 16,
+		"img_url": "https://i.ibb.co/djbw6LV/x-burgue.png",
+		"amount": 1
+	},
+	{
+		"productId": 3,
+		"name": "Big Kenzie",
+		"category": "Sanduíches",
+		"price": 18,
+		"img_url": "https://i.ibb.co/FYBKCwn/big-kenzie.png",
+		"amount": 1
+	},
+	{
+		"productId": 4,
+		"name": "Fanta Guaraná",
+		"category": "Bebidas",
+		"price": 5,
+		"img_url": "https://i.ibb.co/cCjqmPM/fanta-guarana.png",
+		"amount": 1
+	},
+	{
+		"productId": 5,
+		"name": "Coca",
+		"category": "Bebidas",
+		"price": 4.99,
+		"img_url": "https://i.ibb.co/fxCGP7k/coca-cola.png",
+		"amount": 1
+	},
+	{
+		"productId": 6,
+		"name": "McShake Ovomaltine",
+		"category": "Bebidas",
+		"price": 4.99,
+		"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+		"amount": 1
 	}
-	
-CASO O EMAIL NÃO EXISTIR, RETORNARÁ O STATUS 400 BAD REQUEST, COM O SEGUINTE RETORNO: 
-> "Cannot find user" ou "Email format is invalid"
-> 
-CASO A SENHA ESTIVER INCORRETA, RETORNARÁ O STATUS 400 BAD REQUEST, COM O SEGUINTE RETORNO: 
-> "Incorrect password"
+]
+```
 
 
-	   		 			        PRODUTOS
-												  
-  
-PARA MOSTRAR OS PRODUTOS, NECESSITA ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E ENTÃO ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/products, CASO DER CERTO, O STATUS SERÁ (200 OK), COM O SEGUINTE RETORNO:
->
-         [
-		{
-			"productId": 1,
-			"name": "Hamburguer",
-			"category": "Sanduíches",
-			"price": 14,
-			"img_url": "https://i.ibb.co/fpVHnZL/hamburguer.png",
-			"amount": 1
-		},
-		{
-			"productId": 2,
-			"name": "X-Burguer",
-			"category": "Sanduíches",
-			"price": 16,
-			"img_url": "https://i.ibb.co/djbw6LV/x-burgue.png",
-			"amount": 1
-		},
-		{
-			"productId": 3,
-			"name": "Big Kenzie",
-			"category": "Sanduíches",
-			"price": 18,
-			"img_url": "https://i.ibb.co/FYBKCwn/big-kenzie.png",
-			"amount": 1
-		},
-		{
-			"productId": 4,
-			"name": "Fanta Guaraná",
-			"category": "Bebidas",
-			"price": 5,
-			"img_url": "https://i.ibb.co/cCjqmPM/fanta-guarana.png",
-			"amount": 1
-		},
-		{
-			"productId": 5,
-			"name": "Coca",
-			"category": "Bebidas",
-			"price": 4.99,
-			"img_url": "https://i.ibb.co/fxCGP7k/coca-cola.png",
-			"amount": 1
-		},
-		{
-			"productId": 6,
-			"name": "McShake Ovomaltine",
-			"category": "Bebidas",
-			"price": 4.99,
-			"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
-			"amount": 1
-		}
-	]
+# 
+<h1 style="text-align: center;">Carrinho</h1>
 
 
+## POST /cart?userId=10 - Formato da Requisição - Com Autenticação Bearer
 
-						        CARRINHO
+```json
+{
+	"id": 54,
+	"name": "McShake Ovomaltine",
+	"category": "Bebidas",
+	"price": 4.99,
+	"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+	"userId": 10,
+	"amount": 1
+}
+```
 
-PARA ADICIONAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E ENTÃO ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/cart?userId=10, CASO DER CERTO, O STATUS SERÁ (201 CREATED) 
->
-        {
+### Status 201 - Created:
+
+```json
+{
+	"id": 54,
+	"name": "McShake Ovomaltine",
+	"category": "Bebidas",
+	"price": 4.99,
+	"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+	"userId": 10,
+	"amount": 1
+}
+```
+
+#
+
+## GET /cart?userId=10 - Formato da Requisição - Com Autenticação Bearer
+
+<br>
+
+### Status 200 - OK:
+
+```json
+[
+	{
 		"id": 54,
 		"name": "McShake Ovomaltine",
 		"category": "Bebidas",
@@ -126,52 +178,61 @@ PARA ADICIONAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BE
 		"userId": 10,
 		"amount": 1
 	}
+]
+```
 
-E O RETORNO SERÁ: 
->
-	{
-		"id": 54,
-		"name": "McShake Ovomaltine",
-		"category": "Bebidas",
-		"price": 4.99,
-		"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
-		"userId": 10,
-		"amount": 1
-	}
+### Status 400 - Bad Request:
+```json
+"No Bearer Authentication" or "No products in Cart"
+```
 
-PARA PEGAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E ENTÃO ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/cart?userId=10, CASO DER CERTO, O STATUS SERÁ (200 OK), E TERÁ O SEGUINTE RETORNO:
->
-	[
-		{
-			"id": 54,
-			"name": "McShake Ovomaltine",
-			"category": "Bebidas",
-			"price": 4.99,
-			"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
-			"userId": 10,
-			"amount": 1
-		}
-	]
+#
 
-CASO DER ERRADO, É PORQUE NÃO ESTÁ PASSANDO A AUTENTICAÇÃO BEARER OU NÃO POSSUI NENHUM PRODUTO NO CARRINHO
+## PATCH /cart/10 - Formato da Requisição - Com Autenticação Bearer
+```json
+{
+	"id": 55,
+	"name": "McShake Ovomaltine",
+	"category": "Bebidas",
+	"price": 4.99,
+	"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
+	"userId": 10,
+	"amount": 5
+}
+```
 
-PARA DELETAR UM PRODUTO DO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E DEVE PASSAR COMO QUERY PARAMS, O ID DO PRODUTO, E ENTÃO ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/cart/54, CASO DER CERTO, O STATUS SERÁ (200 OK)
+### Status 200 - OK:
+```json
+"Product Updated"
+```
 
-CASO DER ERRADO É PORQUE O ID DO PRODUTO NÃO PERTENCE A ESTE USUÁRIO, E RETORNARÁ O ERRO (401 UNAUTHORIZED), COM A SEGUINTE MENSAGEM: 
-> "Cannot read property 'userId' of undefined"
+### Status 401 - Unauthorized:
+```json
+"Cannot read property 'userId' of undefined"
+```
 
+### Status 404 - Not Found:
+```json
+"Product Not Found"
+```
 
-PARA ATUALIZAR UM PRODUTO NO CARRINHO, DEVE ESTAR LOGADO E COM AUTENTICAÇÃO BEARER, E DEVE PASSAR COMO QUERY PARAMS, O ID DO PRODUTO, E ENTÃO ESTAR NA ROTA https://hamburgueriajsonserver.herokuapp.com/cart/54, CASO DER CERTO, O STATUS SERÁ (200 OK)
->
-        {
-		"id": 55,
-		"name": "McShake Ovomaltine",
-		"category": "Bebidas",
-		"price": 4.99,
-		"img_url": "https://i.ibb.co/QNb3DJJ/milkshake-ovomaltine.png",
-		"userId": 10,
-		"amount": 5
-	}
+#
 
-CASO O ID ESTEJA DIFERENTE, RETORNARÁ O STATUS (401 UNAUTHORIZED), E RETORNARÁ A SEGUINTE MENSAGEM: 
-> "Cannot read property 'userId' of undefined"
+## DELETE /cart/10 - Formato da Requisição - Com Autenticação Bearer
+
+<br>
+
+### Status 200 - OK:
+```json
+"Product Deleted"
+```
+
+### Status 401 - Unauthorized:
+```json
+"Cannot read property 'userId' of undefined"
+```
+
+### Status 404 - Not Found:
+```json
+"Product Not Found"
+```
