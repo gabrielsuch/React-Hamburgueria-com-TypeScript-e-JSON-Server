@@ -1,3 +1,11 @@
+## Site de hamburgueria completo, com cadastro, login, uso de API, Context API, TypeScript
+
+### Pode demorar ao realizar um cadastro, pois está se conectando pela primeira vez na API.
+
+### Link da página: https://react-entrega-s5-hamburgueria-2-0-com-typescript-jso-9ls73cnop.vercel.app/
+
+#
+
 ### LINK DA API: https://hamburgueriajsonserver.herokuapp.com/		
 # 
 <h1 style="text-align: center;">Cadastro</h1>
