@@ -1,4 +1,4 @@
-## Site de hamburgueria completo, com cadastro, login, uso de API, Context API, TypeScript
+## Projeto Front-end onde é realizado a simulação de uma compra em uma lanchonete. Contém cadastro, login, e permite ao usuário realizar a compra dos lanches, definir sua quantidade e pode também realizar a remoção destes lanches ou quantidade a qualquer momento.
 
 ### Pode demorar ao realizar um cadastro, pois está se conectando pela primeira vez na API.
 
