@@ -2,7 +2,7 @@
 
 ### Pode demorar ao realizar um cadastro, pois está se conectando pela primeira vez na API.
 
-### Link da página: https://react-entrega-s5-hamburgueria-2-0-com-typescript-jso-9ls73cnop.vercel.app/
+### Link da página: https://burguerkenzie.vercel.app/
 
 #
 
